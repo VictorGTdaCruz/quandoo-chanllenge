@@ -1,4 +1,4 @@
-package com.example.feature_merchants.extensions
+package com.example.common.extensions
 
 import android.content.ContextWrapper
 import android.view.View
@@ -21,4 +21,8 @@ fun View.hide() {
 
 fun View.show() {
     visibility = View.VISIBLE
+}
+
+fun View.invisible() {
+    visibility = View.INVISIBLE
 }

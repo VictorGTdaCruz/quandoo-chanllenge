@@ -1,4 +1,4 @@
-package com.example.feature_merchants.list
+package com.example.common.component
 
 import android.content.Context
 import android.util.AttributeSet
