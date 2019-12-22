@@ -3,6 +3,7 @@
     package="com.example.feature_merchants">
 
     <application>
+        <activity android:name=".details.MerchantDetailsActivity" />
         <activity android:name=".list.MerchantsListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

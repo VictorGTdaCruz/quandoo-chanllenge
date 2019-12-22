@@ -12,7 +12,9 @@ import com.example.feature_merchants.R
 import com.example.feature_merchants.di.viewModel
 import com.example.common.component.LifecycleOwnerConstraintLayout
 import com.example.common.component.Resource.Status.SUCCESS
+import com.example.feature_merchants.MerchantMapper
 import com.example.feature_merchants.di.selfInject
+import com.example.feature_merchants.dto.ParcelableMerchantDTO
 import kotlinx.android.synthetic.main.item_merchants_list.view.*
 import kotlinx.android.synthetic.main.widget_merchants_list.view.*
 import org.kodein.di.KodeinAware
@@ -20,10 +22,10 @@ import org.kodein.di.KodeinAware
 class MerchantListView: KodeinAware, LifecycleOwnerConstraintLayout {
 
     override val kodein = selfInject()
-
     private val viewModel by viewModel<MerchantListViewModel>()
 
     private val componentState: ComponentStateController
+    var onItemClick: (ParcelableMerchantDTO) -> Unit = {}
 
     constructor(context: Context) : super(context)
 
@@ -55,7 +57,7 @@ class MerchantListView: KodeinAware, LifecycleOwnerConstraintLayout {
                 items = emptyList(),
                 viewType = { R.layout.item_merchants_list },
                 click = {
-                    // TODO go to details screen
+                    onItemClick(MerchantMapper.mapMerchantToParcelableMerchantDTO(this))
                 },
                 bindHolder = {
                     merchantTitle.text = it.name

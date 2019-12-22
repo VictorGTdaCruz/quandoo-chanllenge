@@ -8,6 +8,7 @@
     tools:context=".list.MerchantsListActivity">
 
     <com.example.feature_merchants.list.component.MerchantListView
+        android:id="@+id/merchantListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
