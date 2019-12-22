@@ -4,13 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.domain.models.Merchant
 
-class MerchantListAdapter(
-    var items: List<Merchant> = emptyList(),
+class GenericAdapter<T>(
+    var items: List<T> = emptyList(),
     private val viewType: (Int) -> Int,
-    private val click: Merchant.(View) -> Unit = {},
-    private val bindHolder: View.(Merchant) -> Unit = {}
+    private val click: T.(View) -> Unit = {},
+    private val bindHolder: View.(T) -> Unit = {}
 ) : RecyclerView.Adapter<Holder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
