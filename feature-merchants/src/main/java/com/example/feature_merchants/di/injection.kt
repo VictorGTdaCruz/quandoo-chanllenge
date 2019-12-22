@@ -6,23 +6,16 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import com.example.domain.services.MerchantsService
 import com.example.feature_merchants.list.component.MerchantListViewModel
-import com.example.network.di.networkModule
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.direct
-import org.kodein.di.generic.*
-import retrofit2.Retrofit
+import org.kodein.di.generic.bind
+import org.kodein.di.generic.instance
+import org.kodein.di.generic.instanceOrNull
+import org.kodein.di.generic.provider
 
 val merchantsServiceModule = Kodein.Module(name = "merchants-service") {
-
-    importOnce(networkModule)
-
-    bind<MerchantsService>() with singleton {
-        val retrofit: Retrofit = instance()
-        retrofit.create(MerchantsService::class.java)
-    }
 
     bind<MerchantListViewModel>() with provider {
         MerchantListViewModel(instance())
