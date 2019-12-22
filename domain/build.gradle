@@ -2,4 +2,5 @@ apply from: '../kotlin-module.gradle'
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit2"
 }

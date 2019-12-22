@@ -12,7 +12,7 @@ val networkModule = Kodein.Module(name = "network") {
 
     bind<Retrofit>() with singleton {
         Retrofit.Builder()
-            .baseUrl("api.quandoo.com")
+            .baseUrl("api.quandoo.com/")
             .client(instance())
             .build()
     }
