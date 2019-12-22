@@ -2,6 +2,7 @@ package com.example.feature_merchants.details.component
 
 import android.content.Context
 import android.util.AttributeSet
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.example.common.adapters.GenericPagerAdapter
 import com.example.common.adapters.PagerItem
@@ -42,8 +43,11 @@ class MerchantDetailsView: LifecycleOwnerConstraintLayout {
         merchantDetailsImages.adapter = GenericPagerAdapter(
             context = context,
             items = merchant?.images?.map {
+                val progress = CircularProgressDrawable(context)
+                progress.start()
                 PagerItem(R.layout.item_merchant_details_image) {
                     Glide.with(context).load(it)
+                        .placeholder(progress)
                         .error(R.drawable.ic_restaurant_black_24dp)
                         .into(itemMerchantDetailsImage)
                 }

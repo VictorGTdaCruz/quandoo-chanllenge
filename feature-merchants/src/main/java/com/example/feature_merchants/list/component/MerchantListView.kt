@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.example.common.adapters.GenericRecyclerAdapter
 import com.example.common.component.ComponentStateController
@@ -61,8 +62,11 @@ class MerchantListView: KodeinAware, LifecycleOwnerConstraintLayout {
                     onItemClick(MerchantMapper.mapMerchantToParcelableMerchantDTO(this))
                 },
                 bindHolder = {
+                    val progress = CircularProgressDrawable(context)
+                    progress.start()
                     merchantTitle.text = it.name
                     Glide.with(context).load(it.images?.firstOrNull()?.url)
+                        .placeholder(progress)
                         .error(R.drawable.ic_restaurant_black_24dp)
                         .into(merchantImage)
                 }
