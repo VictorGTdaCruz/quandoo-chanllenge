@@ -1,11 +1,11 @@
-package com.example.feature_merchants.list.component
+package com.example.common.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class GenericAdapter<T>(
+class GenericRecyclerAdapter<T>(
     var items: List<T> = emptyList(),
     private val viewType: (Int) -> Int,
     private val click: T.(View) -> Unit = {},

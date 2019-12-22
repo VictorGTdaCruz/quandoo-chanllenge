@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
+import com.example.common.adapters.GenericRecyclerAdapter
 import com.example.common.component.ComponentStateController
 import com.example.domain.models.Merchant
 import com.example.domain.models.MerchantPagedList
@@ -53,7 +54,7 @@ class MerchantListView: KodeinAware, LifecycleOwnerConstraintLayout {
 
     private fun setupList() {
         merchantsList.run {
-            adapter = GenericAdapter<Merchant>(
+            adapter = GenericRecyclerAdapter<Merchant>(
                 items = emptyList(),
                 viewType = { R.layout.item_merchants_list },
                 click = {
@@ -62,8 +63,8 @@ class MerchantListView: KodeinAware, LifecycleOwnerConstraintLayout {
                 bindHolder = {
                     merchantTitle.text = it.name
                     Glide.with(context).load(it.images?.firstOrNull()?.url)
-                            .error(R.drawable.ic_restaurant_black_24dp)
-                            .into(merchantImage)
+                        .error(R.drawable.ic_restaurant_black_24dp)
+                        .into(merchantImage)
                 }
             )
             layoutManager = GridLayoutManager(context, NUMBER_OF_COLUMNS)
@@ -71,7 +72,7 @@ class MerchantListView: KodeinAware, LifecycleOwnerConstraintLayout {
     }
 
     private fun updateList(merchantPagedList: MerchantPagedList) {
-        (merchantsList.adapter as GenericAdapter<Merchant>).run {
+        (merchantsList.adapter as GenericRecyclerAdapter<Merchant>).run {
             items = merchantPagedList.merchants ?: emptyList()
             notifyDataSetChanged()
         }
