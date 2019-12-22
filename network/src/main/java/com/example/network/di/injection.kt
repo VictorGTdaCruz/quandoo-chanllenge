@@ -7,13 +7,15 @@ import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.singleton
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 val networkModule = Kodein.Module(name = "network") {
 
     bind<Retrofit>() with singleton {
         Retrofit.Builder()
-            .baseUrl("api.quandoo.com/")
+            .baseUrl("https://api.quandoo.com/")
             .client(instance())
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 

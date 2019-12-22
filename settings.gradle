@@ -1,2 +1,2 @@
-include ':app', ':domain', ':network'
+include ':app', ':domain', ':network', ':feature-merchants'
 rootProject.name='Quandoo-Challenge'
