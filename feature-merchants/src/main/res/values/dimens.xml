@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="twelve_sp">12sp</dimen>
+
+    <dimen name="eight_dips">8dp</dimen>
+    <dimen name="four_dips">4dp</dimen>
+    <dimen name="sixteen_dips">16dp</dimen>
+
+    <dimen name="card_radius">2dp</dimen>
+
+</resources>
