@@ -51,4 +51,5 @@ class MerchantListViewModel(
             ((offset ?: 0) + 1) * (limit ?: 0) >= size ?: 0
         } ?: false
 
+    fun shouldMakeInitialRequests() = merchantsList.value == null
 }

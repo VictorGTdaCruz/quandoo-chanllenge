@@ -50,7 +50,7 @@ class MerchantListView: KodeinAware, LifecycleOwnerConstraintLayout {
                 if (it.status == SUCCESS) updateList(it.data)
             })
 
-            loadInitialRequests()
+            if (viewModel.shouldMakeInitialRequests()) loadInitialRequests()
         }
 
         pagedRecyclerManager = PagedRecyclerManager(
@@ -64,9 +64,8 @@ class MerchantListView: KodeinAware, LifecycleOwnerConstraintLayout {
     }
 
     private fun loadInitialRequests() {
-        if (viewModel.merchantsList.value == null)
-            for (i in 0.until(NUMBER_OF_REQUESTS_ON_INIT))
-                viewModel.loadPage(i)
+        for (i in 0.until(NUMBER_OF_REQUESTS_ON_INIT))
+            viewModel.loadPage(i)
     }
 
     private fun setupList() {
