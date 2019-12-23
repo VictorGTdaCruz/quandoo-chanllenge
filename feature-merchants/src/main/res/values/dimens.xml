@@ -6,6 +6,7 @@
     <dimen name="eight_dips">8dp</dimen>
     <dimen name="four_dips">4dp</dimen>
     <dimen name="sixteen_dips">16dp</dimen>
+    <dimen name="twenty_four_dips">24dp</dimen>
 
     <dimen name="card_radius">5dp</dimen>
 

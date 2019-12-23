@@ -1,8 +1,8 @@
 package com.example.feature_merchants.list
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.common.selfInject
 import com.example.feature_merchants.R
 import com.example.feature_merchants.details.MerchantDetailsActivity

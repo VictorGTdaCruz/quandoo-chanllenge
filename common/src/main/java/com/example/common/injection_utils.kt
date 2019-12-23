@@ -37,6 +37,7 @@ fun AppCompatActivity.selfInject() = Kodein.lazy {
         this@selfInject
     }
 }
+
 fun View.selfInject() = Kodein.lazy {
 
     val parentKodein = (context as KodeinAware).kodein

@@ -7,4 +7,6 @@
     <string name="merchant_details_name_label">Restaurant Name</string>
     <string name="merchant_details_address_label">Address</string>
     <string name="merchant_details_score_label">Score</string>
+
+    <string name="similar_merchants_label">Similar Restaurants</string>
 </resources>
