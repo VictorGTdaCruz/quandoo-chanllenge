@@ -71,7 +71,7 @@ class MerchantListView: KodeinAware, LifecycleOwnerConstraintLayout {
                         R.layout.item_merchants_list
                 },
                 click = {
-                    onItemClick(MerchantMapper.mapMerchantToParcelableMerchantDTO(this))
+                    onItemClick(MerchantMapper.mapMerchantToParcelableMerchantDTO(it))
                 },
                 bindHolder = {
                     val progress = CircularProgressDrawable(context)

@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 class GenericRecyclerAdapter<T>(
     var items: List<T> = emptyList(),
     private val viewType: (Int) -> Int,
-    private val click: T.(View) -> Unit = {},
+    private val click: View.(T) -> Unit = {},
     private val bindHolder: View.(T) -> Unit = {}
 ) : RecyclerView.Adapter<Holder>(){
 
@@ -19,7 +19,7 @@ class GenericRecyclerAdapter<T>(
         itemView.setOnClickListener {
             val adapterPosition = viewHolder.adapterPosition
             if (adapterPosition != RecyclerView.NO_POSITION) {
-                items[adapterPosition].click(itemView)
+                itemView.click(items[adapterPosition])
             }
         }
         return viewHolder
