@@ -15,7 +15,7 @@ import org.kodein.di.generic.instance
 import org.kodein.di.generic.instanceOrNull
 import org.kodein.di.generic.provider
 
-val merchantsServiceModule = Kodein.Module(name = "merchants-service") {
+val merchantsModule = Kodein.Module(name = "merchants") {
 
     bind<MerchantListViewModel>() with provider {
         MerchantListViewModel(instance())
