@@ -1,4 +1,4 @@
-package com.example.feature_merchants
+package com.example.feature_merchants.util
 
 import com.example.domain.models.Merchant
 import com.example.feature_merchants.dto.ParcelableMerchantDTO

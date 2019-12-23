@@ -9,12 +9,12 @@ import com.bumptech.glide.Glide
 import com.example.common.adapters.GenericRecyclerAdapter
 import com.example.common.component.ComponentStateController
 import com.example.domain.models.Merchant
-import com.example.domain.models.MerchantPagedList
 import com.example.feature_merchants.R
 import com.example.feature_merchants.di.viewModel
 import com.example.common.component.LifecycleOwnerConstraintLayout
 import com.example.common.component.Resource.Status.SUCCESS
-import com.example.feature_merchants.MerchantMapper
+import com.example.domain.models.MerchantPagedList
+import com.example.feature_merchants.util.MerchantMapper
 import com.example.feature_merchants.di.selfInject
 import com.example.feature_merchants.dto.ParcelableMerchantDTO
 import kotlinx.android.synthetic.main.item_merchants_list.view.*
@@ -27,6 +27,7 @@ class MerchantListView: KodeinAware, LifecycleOwnerConstraintLayout {
     private val viewModel by viewModel<MerchantListViewModel>()
 
     private val componentState: ComponentStateController
+    private var pagedRecyclerManager: PagedRecyclerManager
     var onItemClick: (ParcelableMerchantDTO) -> Unit = {}
 
     constructor(context: Context) : super(context)
@@ -35,6 +36,7 @@ class MerchantListView: KodeinAware, LifecycleOwnerConstraintLayout {
 
     companion object {
         private const val NUMBER_OF_COLUMNS = 3
+        private const val NUMBER_OF_REQUESTS_ON_INIT = 4
     }
 
     init {
@@ -47,7 +49,12 @@ class MerchantListView: KodeinAware, LifecycleOwnerConstraintLayout {
                 if (it.status == SUCCESS) updateList(it.data ?: MerchantPagedList())
             })
 
-            viewModel.loadNextPage()
+            for (i in 0.until(NUMBER_OF_REQUESTS_ON_INIT))
+                viewModel.loadPage(i)
+        }
+
+        pagedRecyclerManager = PagedRecyclerManager(merchantsList, NUMBER_OF_REQUESTS_ON_INIT - 1) {
+            viewModel.loadPage(it)
         }
 
         setupList()
@@ -57,18 +64,25 @@ class MerchantListView: KodeinAware, LifecycleOwnerConstraintLayout {
         merchantsList.run {
             adapter = GenericRecyclerAdapter<Merchant>(
                 items = emptyList(),
-                viewType = { R.layout.item_merchants_list },
+                viewType = {
+                    if (pagedRecyclerManager.shouldShowLoading(it))
+                        R.layout.item_loading
+                    else
+                        R.layout.item_merchants_list
+                },
                 click = {
                     onItemClick(MerchantMapper.mapMerchantToParcelableMerchantDTO(this))
                 },
                 bindHolder = {
                     val progress = CircularProgressDrawable(context)
                     progress.start()
-                    merchantTitle.text = it.name
-                    Glide.with(context).load(it.images?.firstOrNull()?.url)
-                        .placeholder(progress)
-                        .error(R.drawable.ic_restaurant_black_24dp)
-                        .into(merchantImage)
+                    merchantTitle?.text = it.name
+                    merchantImage?.let { view ->
+                        Glide.with(context).load(it.images?.firstOrNull()?.url)
+                            .placeholder(progress)
+                            .error(R.drawable.ic_restaurant_black_24dp)
+                            .into(view)
+                    }
                 }
             )
             layoutManager = GridLayoutManager(context, NUMBER_OF_COLUMNS)
@@ -76,9 +90,10 @@ class MerchantListView: KodeinAware, LifecycleOwnerConstraintLayout {
     }
 
     private fun updateList(merchantPagedList: MerchantPagedList) {
-        (merchantsList.adapter as GenericRecyclerAdapter<Merchant>).run {
-            items = merchantPagedList.merchants ?: emptyList()
-            notifyDataSetChanged()
-        }
+        pagedRecyclerManager.updateItems(
+            itemsToAdd = merchantPagedList.merchants,
+            abstractAdapter = merchantsList.adapter as GenericRecyclerAdapter<Merchant>,
+            isLastPage = viewModel.isLastPage()
+        )
     }
 }

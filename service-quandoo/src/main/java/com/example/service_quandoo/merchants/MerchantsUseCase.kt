@@ -8,8 +8,10 @@ import retrofit2.Response
 
 class MerchantsUseCase(private val merchantsService: MerchantsService) {
 
-    fun getMerchantList(onSuccess: (MerchantPagedList?) -> Unit, onError: (Throwable) -> Unit) {
-        merchantsService.getList().enqueue(object : Callback<MerchantPagedList> {
+    fun getMerchantList(parameters: Map<String, String>,
+                        onSuccess: (MerchantPagedList?) -> Unit,
+                        onError: (Throwable) -> Unit) {
+        merchantsService.getList(parameters).enqueue(object : Callback<MerchantPagedList> {
             override fun onResponse(call: Call<MerchantPagedList>, response: Response<MerchantPagedList>) {
                 onSuccess(response.body())
             }
