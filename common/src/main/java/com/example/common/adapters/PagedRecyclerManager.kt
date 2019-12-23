@@ -46,7 +46,7 @@ class PagedRecyclerManager(
         lastPageReached = isLastPage
         isLoading = false
 
-        abstractAdapter.items = itemsToAdd.toList()
+        abstractAdapter.items = itemsToAdd
         abstractAdapter.notifyDataSetChanged()
     }
 
