@@ -58,7 +58,6 @@ class PagedRecyclerManager(
 
         adapter.items = newItems
         adapter.notifyDataSetChanged()
-        recyclerView.smoothScrollToPosition(newItems.size - 1)
     }
 
     private fun removeLoading(adapter: GenericRecyclerAdapter<Merchant>) {

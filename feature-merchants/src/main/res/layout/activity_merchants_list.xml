@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<com.example.feature_merchants.list.component.MerchantListView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/merchantListView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey"
-    tools:context=".list.MerchantsListActivity">
-
-    <com.example.feature_merchants.list.component.MerchantListView
-        android:id="@+id/merchantListView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    android:background="@color/grey" />
