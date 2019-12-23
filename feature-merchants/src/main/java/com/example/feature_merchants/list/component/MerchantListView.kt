@@ -7,15 +7,16 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.example.common.adapters.GenericRecyclerAdapter
+import com.example.common.adapters.PagedRecyclerManager
 import com.example.common.component.ComponentStateController
 import com.example.domain.models.Merchant
 import com.example.feature_merchants.R
-import com.example.feature_merchants.di.viewModel
 import com.example.common.component.LifecycleOwnerConstraintLayout
 import com.example.common.component.Resource.Status.SUCCESS
+import com.example.common.selfInject
+import com.example.common.viewModel
 import com.example.domain.models.MerchantPagedList
 import com.example.feature_merchants.util.MerchantMapper
-import com.example.feature_merchants.di.selfInject
 import com.example.feature_merchants.dto.ParcelableMerchantDTO
 import kotlinx.android.synthetic.main.item_merchants_list.view.*
 import kotlinx.android.synthetic.main.widget_merchants_list.view.*
@@ -53,7 +54,10 @@ class MerchantListView: KodeinAware, LifecycleOwnerConstraintLayout {
                 viewModel.loadPage(i)
         }
 
-        pagedRecyclerManager = PagedRecyclerManager(merchantsList, NUMBER_OF_REQUESTS_ON_INIT - 1) {
+        pagedRecyclerManager = PagedRecyclerManager(
+            merchantsList,
+            NUMBER_OF_REQUESTS_ON_INIT - 1
+        ) {
             viewModel.loadPage(it)
         }
 

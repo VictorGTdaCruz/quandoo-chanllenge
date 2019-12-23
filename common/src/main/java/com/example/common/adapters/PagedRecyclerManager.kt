@@ -1,8 +1,6 @@
-package com.example.feature_merchants.list.component
+package com.example.common.adapters
 
 import androidx.recyclerview.widget.RecyclerView
-import com.example.common.adapters.GenericRecyclerAdapter
-import com.example.domain.models.Merchant
 
 
 class PagedRecyclerManager(
@@ -13,7 +11,7 @@ class PagedRecyclerManager(
     var lastPageReached = false
     var isLoading = true
         set(value) {
-            val adapter = recyclerView.adapter as GenericRecyclerAdapter<Merchant>
+            val adapter = recyclerView.adapter as GenericRecyclerAdapter<*>
             if (value) addLoading(adapter) else removeLoading(adapter)
             field = value
         }
@@ -42,8 +40,8 @@ class PagedRecyclerManager(
                 && isLoading
     }
 
-    fun updateItems(itemsToAdd: List<Merchant>,
-                    abstractAdapter: GenericRecyclerAdapter<Merchant>,
+    fun <T> updateItems(itemsToAdd: List<T>,
+                    abstractAdapter: GenericRecyclerAdapter<T>,
                     isLastPage: Boolean = false) {
         lastPageReached = isLastPage
         isLoading = false
@@ -52,7 +50,7 @@ class PagedRecyclerManager(
         abstractAdapter.notifyDataSetChanged()
     }
 
-    private fun addLoading(adapter: GenericRecyclerAdapter<Merchant>) {
+    private fun <T> addLoading(adapter: GenericRecyclerAdapter<T>) {
         val currentList = adapter.items.toMutableList()
         val newItems = currentList.apply { add(currentList.first()) }
 
@@ -60,7 +58,7 @@ class PagedRecyclerManager(
         adapter.notifyDataSetChanged()
     }
 
-    private fun removeLoading(adapter: GenericRecyclerAdapter<Merchant>) {
+    private fun <T> removeLoading(adapter: GenericRecyclerAdapter<T>) {
         if (adapter.items.isEmpty()) return
         val loadingPosition = adapter.itemCount - 1
         val currentList = adapter.items.toMutableList()
