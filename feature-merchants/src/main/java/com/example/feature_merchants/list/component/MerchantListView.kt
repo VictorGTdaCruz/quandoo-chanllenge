@@ -55,8 +55,8 @@ class MerchantListView: KodeinAware, LifecycleOwnerConstraintLayout {
         }
 
         pagedRecyclerManager = PagedRecyclerManager(
-            merchantsList,
-            NUMBER_OF_REQUESTS_ON_INIT - 1
+            recyclerView = merchantsList,
+            pageToLoad = NUMBER_OF_REQUESTS_ON_INIT - 1
         ) {
             viewModel.loadPage(it)
         }

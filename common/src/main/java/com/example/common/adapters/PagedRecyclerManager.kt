@@ -22,13 +22,13 @@ class PagedRecyclerManager(
                 override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                     super.onScrollStateChanged(recyclerView, newState)
 
-                    if (!recyclerView.canScrollVertically(DOWN)) {
+                    if (!recyclerView.canScrollVertically(DOWN))
                         if (!lastPageReached && !isLoading) {
                             isLoading = true
                             pageToLoad++
                             shouldLoadMore(pageToLoad)
                         }
-                    }
+
                 }
             }
         )

@@ -58,7 +58,7 @@ class SimilarMerchantsView : KodeinAware, LifecycleOwnerConstraintLayout {
         similarMerchantsRecycler.run {
             adapter = GenericRecyclerAdapter<Merchant>(
                 items = emptyList(),
-                viewType = { R.layout.item_merchants_list },
+                viewType = { R.layout.item_merchants_similar_list },
                 click = {
                     onItemClick(MerchantMapper.mapMerchantToParcelableMerchantDTO(it))
                 },
