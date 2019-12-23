@@ -18,6 +18,8 @@ class MerchantsListActivity : KodeinAware, AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_merchants_list)
 
+        title = getString(R.string.merchants_screen_title)
+
         merchantListView.onItemClick = {
             startActivity(Intent(this, MerchantDetailsActivity::class.java)
                 .putExtra(MERCHANT_KEY, it))

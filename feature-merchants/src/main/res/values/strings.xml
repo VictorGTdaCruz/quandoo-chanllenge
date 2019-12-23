@@ -1,8 +1,9 @@
 <resources>
-    <string name="app_name">feature-merchants</string>
+    <string name="merchants_screen_title">Restaurants</string>
+    <string name="merchant_details_screen_title">About this Restaurant</string>
 
     <string name="merchant_details_address">%s, %s - %s</string>
-    <string name="merchant_details_rating">%s out of 10</string>
+    <string name="merchant_details_rating">%s out of 6</string>
     <string name="merchant_details_name_label">Restaurant Name</string>
     <string name="merchant_details_address_label">Address</string>
     <string name="merchant_details_score_label">Score</string>
