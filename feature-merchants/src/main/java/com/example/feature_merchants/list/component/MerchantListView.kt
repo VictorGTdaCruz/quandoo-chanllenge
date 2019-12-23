@@ -47,7 +47,7 @@ class MerchantListView: KodeinAware, LifecycleOwnerConstraintLayout {
         if (!isInEditMode) {
             viewModel.merchantsList.observe(this, Observer {
                 componentState.updateState(it)
-                if (it.status == SUCCESS) updateList(it.data ?: MerchantPagedList())
+                if (it.status == SUCCESS) updateList(it.data)
             })
 
             for (i in 0.until(NUMBER_OF_REQUESTS_ON_INIT))
