@@ -1,6 +1,5 @@
 package com.example.common.adapters
 
-import android.view.View
 import android.widget.FrameLayout
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ApplicationProvider
@@ -11,7 +10,6 @@ import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mockito
 import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
@@ -19,16 +17,16 @@ class AbstractAdapterTest {
 
     private lateinit var adapter: GenericRecyclerAdapter<String>
 
-    private lateinit var mockObject: List<*>
+    private lateinit var list: List<Int>
 
     @Before
     fun setup() {
-        mockObject = Mockito.mock(List::class.java)
+        list = listOf()
         adapter = GenericRecyclerAdapter(
             listOf(""),
             { R.layout.test_layout },
-            { mockObject.size },
-            { mockObject.indices })
+            { list.size },
+            { list.indices })
     }
 
     @Test
@@ -43,12 +41,6 @@ class AbstractAdapterTest {
             R.layout.test_layout
         )
         assertNotNull(viewHolder.itemView.test_text)
-    }
-
-    @Test
-    fun `Should bind view holder`() {
-        adapter.onBindViewHolder(Holder(View(ApplicationProvider.getApplicationContext())), 0)
-        Mockito.verify(mockObject).size
     }
 
     @Test

@@ -15,7 +15,7 @@ import org.kodein.di.generic.instanceOrNull
 import org.kodein.di.generic.provider
 
 @Suppress("UNCHECKED_CAST")
-inline fun <reified VM : ViewModel> KodeinAware.viewModel() = kotlin.lazy {
+inline fun <reified VM : ViewModel> KodeinAware.viewModel() = lazy {
 
     val factory = object : ViewModelProvider.Factory {
         override fun <Model : ViewModel> create(klass: Class<Model>) =

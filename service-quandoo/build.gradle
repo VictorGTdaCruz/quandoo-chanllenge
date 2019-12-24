@@ -16,4 +16,7 @@ dependencies {
     implementation "org.kodein.di:kodein-di-generic-jvm:$kodeinDI"
     implementation "com.squareup.retrofit2:retrofit:$retrofit2"
 
+    testImplementation 'org.robolectric:robolectric:4.3'
+
+    testImplementation "io.mockk:mockk:1.9"
 }
