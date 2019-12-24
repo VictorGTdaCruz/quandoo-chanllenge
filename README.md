@@ -23,7 +23,7 @@ The project uses some concepts and tecnologies below
 * Dependency Injection using [Kodein](http://kodein.org/Kodein-DI/)
 * Multi Module 
 * Business components
-* Adapter Pattern
+* Generic Adapters Pattern
 * Separation of concerns
 
 The goal of multi-module build is to strongly improve cacheable tasks as well parallel tasks execution.
