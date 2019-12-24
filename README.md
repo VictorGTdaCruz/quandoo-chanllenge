@@ -1,6 +1,6 @@
 # Quandoo-Challenge
 
-This is a basic project, created as a technical task at Quandoo.
+This is a basic project, created as a technical task for Quandoo.
 
 ## Overview
 
