@@ -14,7 +14,5 @@ data class ParcelableMerchantDTO(
     val city: String? = null,
     val country: String? = null,
     val reviewScore: String? = null,
-    val images: List<String?>? = null,
-//    val openingTimes: OpeningTimesDTO? = null,
-    val shortDescription: String? = null
+    val images: List<String?>? = null
 ): Parcelable

@@ -25,8 +25,7 @@ class MerchantMapperTest {
         reviewScore = "5",
         images = listOf(ImageDTO(
             url = "url"
-        )),
-        shortDescription = "desc"
+        ))
     )
 
     @Test
@@ -44,7 +43,6 @@ class MerchantMapperTest {
             assertEquals(country, "Br")
             assertEquals(reviewScore, "5")
             assertEquals(images, listOf("url"))
-            assertEquals(shortDescription, "desc")
         }
     }
 }

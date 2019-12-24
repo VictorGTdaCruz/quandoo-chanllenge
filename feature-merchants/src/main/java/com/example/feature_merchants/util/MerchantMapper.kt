@@ -17,8 +17,7 @@ object MerchantMapper {
                 city = location?.address?.city,
                 country = location?.address?.country,
                 reviewScore = reviewScore,
-                images = images?.map { it.url },
-                shortDescription = shortDescription
+                images = images?.map { it.url }
             )
         }
 }
